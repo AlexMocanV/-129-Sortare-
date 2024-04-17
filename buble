@@ -1,0 +1,39 @@
+#include <fstream>
+#include <vector>
+#include <algorithm>
+using ui=unsigned int;
+using namespace std;
+
+vector<ui>v;
+
+ifstream cin("sortare.in");
+ofstream cout("sortare.out");
+
+int main()
+{
+    ui n;
+    cin>>n;
+    v.resize(n);
+    for(auto&i:v)
+    {
+        cin>>i;
+    }
+    bool sortat=true;
+    do
+    {
+        sortat=true;
+        for(ui i=0;i<n-1;i++)
+        {
+            if(v[i]<v[i+1])
+            {
+                swap(v[i+1],v[i]);
+                sortat=false;
+            }
+        }
+    }while(sortat==false);
+    for(auto&i:v)
+    {
+        cout<<i<<" ";
+    }
+    return 0;
+}
