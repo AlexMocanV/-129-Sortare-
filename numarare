@@ -1,0 +1,51 @@
+#include <fstream>
+#include <vector>
+#include <algorithm>
+using ui=unsigned int;
+using namespace std;
+
+vector<ui>v;
+vector<ui>f;
+vector<ui>u;
+ifstream cin("sortare.in");
+ofstream cout("sortare.out");
+
+int main()
+{
+    ui n,maxi=0;
+    cin>>n;
+    v.resize(n);
+    for(auto&i:v)
+    {
+        cin>>i;
+        maxi=max(maxi,i);
+    }
+    f.resize(maxi);
+    for(ui i=0;i<n-1;i++)
+    {
+        for(ui j=i+1;j<n;j++)
+        {
+            if(v[i]<v[j])
+            {
+                f[i]++;
+            }
+            else
+            {
+                f[j]++;
+            }
+        }
+    }
+    u.resize(n);
+    for(ui i=0;i<n;i++){
+        u[f[i]]=v[i];
+    }
+    for(ui i=0;i<n;i++)
+    {
+        v[i]=u[i];
+    }
+    for(auto&i:v)
+    {
+        cout<<i<<" ";
+    }
+    return 0;
+}
